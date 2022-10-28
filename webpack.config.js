@@ -31,6 +31,10 @@ module.exports = {
           "css-loader",// Translates CSS into CommonJS
           "sass-loader"// Compiles Sass to CSS
         ]
+      },
+      {
+        test: /\.png$/,
+        use: ["file-loader"],
       }
     ]
   }
