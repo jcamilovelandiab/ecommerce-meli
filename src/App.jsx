@@ -1,15 +1,10 @@
 import React from 'react';
-import './styles.scss';
+import HomePage from './pages/home';
 
 const App = () => {
   return (
 		<>
-			<div>
-				Ecommerce app
-			</div>
-			<button>
-				Click here!
-			</button>
+			<HomePage />
 		</>
 	)
 }

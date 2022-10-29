@@ -1,0 +1,10 @@
+@import "./variables.scss";
+
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font: 100% $font-stack;
+}
