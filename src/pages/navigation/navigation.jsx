@@ -12,10 +12,10 @@ const Navigation = () => {
 	return (
 		<div className={styles.navigation}>
 			<div className={styles.navigation_content}>
-				<Grid container className={styles.grid} style={styles.grid}>
-					<Grid item cols={1} />
-					<Grid item cols={1}>
-						<img src={smallMeliLogo} alt='search' className={styles.logo} />
+				<Grid container style={styles.grid}>
+					<Grid item cols={1}/>
+					<Grid item cols={1} style={styles.logo_container}>
+						<img src={smallMeliLogo} alt='search' className={styles.logo_image} />
 					</Grid>
 					<Grid item cols={9}>
 						<SearchBox />

@@ -1,0 +1,10 @@
+@import "../../variables.scss";
+
+.layout {
+	padding-left: map-get($map: $spacing, $key: "md");
+	padding-right: map-get($map: $spacing, $key: "md");
+	&_main {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+}

@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Layout from '../../components/layout/layout';
 
 
 const ItemsPage = () => {
 	const [searchParams] = useSearchParams();
-	console.log(searchParams.get('search'));
+	const searchInput = searchParams.get('search');
+
+	useEffect(() => {
+
+	}, [searchInput]);
 
 	return (
 		<div>
-			Items Page
+			<Layout>
+				Items page
+			</Layout>
 		</div>
 	)
 };
