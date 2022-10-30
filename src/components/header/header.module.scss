@@ -5,9 +5,8 @@ $headerHeight: 28px;
 .header {
 	height: $headerHeight;
 	background: $primary;
-	z-index: 1000;
-	position: fixed;
 	width: 100%;
+
 	&_content {
 		height: 100%;
 		display: flex;

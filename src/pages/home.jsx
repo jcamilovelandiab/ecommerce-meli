@@ -1,11 +1,25 @@
 import React from 'react';
-import Header from '../components/header/header';
+
+import styles from './home.module.scss';
+
+import Box from '../components/box/box';
+import Grid from '../components/grid/grid';
 
 const HomePage = () => {
 	return (
-		<>
-			<Header />
-		</>
+		<div className={styles.home}>
+			<Grid container>
+				<Grid item cols={6}>
+					<Box>Box 1</Box>
+				</Grid>
+				<Grid item cols={6}>
+					<Box>Box 2</Box>
+				</Grid>
+				<Grid item cols={6}>
+					<Box>Box 3</Box>
+				</Grid>
+			</Grid>
+		</div>
 	);
 };
 
