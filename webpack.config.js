@@ -24,12 +24,12 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+				exclude: /node_modules|server/,
         use: "babel-loader"
       },
       {
         test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
+        exclude: /node_modules|server/,
         use: [
           "style-loader", // Creates `style` nodes from JS strings
           "css-loader",// Translates CSS into CommonJS
@@ -38,6 +38,7 @@ module.exports = {
       },
       {
         test: /\.png$/,
+				exclude: /node_modules|server/,
         use: ["file-loader"],
       }
     ]
