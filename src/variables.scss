@@ -5,8 +5,11 @@ $gray-light: #999999;
 $gray: #666666;
 $dark: #333333;
 
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
+$spacing: (
+	'sm': 8px,
+	'md': 16px,
+	'lg': 24px,
+	'xl': 32px
+);
+
 $font-stack: Helvetica, sans-serif;

@@ -15,7 +15,9 @@
 		}
 	}
 
-	&_spacing_sm > &_item {
-		padding: $spacing-sm;
+	@each $name, $value in $spacing {
+		&_spacing_#{$name} > &_item {
+			padding: $value;
+		}
 	}
 }
