@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.search {
+	display: flex;
+	height: 100%;
+	padding: 4px;
+	&_input {
+		padding: 2px 8px;
+		height: 100%;
+		width: 100%;
+		font-size: 9px;
+		border: none;
+		border-radius: 3px 0px 0px 3px;
+		color: $gray-light;
+		outline: none;
+	}
+	&_button {
+		border: none;
+		border-radius: 0px 3px 3px 0px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	&_icon {
+		width: 10px;
+		height: 10px;
+	}
+}

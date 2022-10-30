@@ -1,20 +1,23 @@
 @import "../../variables.scss";
 
-$headerHeight: 28px;
+$headerHeight: 32px;
 
 .header {
 	height: $headerHeight;
 	background: $primary;
 	width: 100%;
-
 	&_content {
 		height: 100%;
-		display: flex;
-		align-items: center;
+		padding-left: map-get($map: $spacing, $key: "md");
+		padding-right: map-get($map: $spacing, $key: "md");
 	}
 }
 
+.grid {
+	height: 100%;
+}
+
 .logo {
-	height: 24px;
-	padding: 4px;
+	height: 100%;
+	padding: 6px;
 }
