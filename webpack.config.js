@@ -6,12 +6,16 @@ module.exports = {
   output: {
     filename: "bundle.[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+		publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html"
     })
   ],
+	devServer: {
+		historyApiFallback: true
+	},
   resolve: {
     modules: [__dirname, "src", "node_modules"],
     extensions: [".js", ".jsx"]
