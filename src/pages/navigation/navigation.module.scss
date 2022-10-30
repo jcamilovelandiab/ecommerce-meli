@@ -1,9 +1,9 @@
 @import "../../variables.scss";
 
-$headerHeight: 32px;
+$height: 32px;
 
-.header {
-	height: $headerHeight;
+.navigation {
+	height: $height;
 	background: $primary;
 	width: 100%;
 	&_content {

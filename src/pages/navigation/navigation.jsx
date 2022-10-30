@@ -1,16 +1,17 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import styles from './header.module.scss';
+import styles from './navigation.module.scss';
 import smallMeliLogo from '../../assets/images/Logo_ML.png';
 
-import Grid from '../grid/grid';
-import SearchBox from '../search-box/search-box';
+import Grid from '../../components/grid/grid';
+import SearchBox from '../../components/search-box/search-box';
 
-const Header = () => {
+const Navigation = () => {
 
 	return (
-		<div className={styles.header}>
-			<div className={styles.header_content}>
+		<div className={styles.navigation}>
+			<div className={styles.navigation_content}>
 				<Grid container className={styles.grid} style={styles.grid}>
 					<Grid item cols={1} />
 					<Grid item cols={1}>
@@ -22,8 +23,9 @@ const Header = () => {
 					<Grid item cols={1}/>
 				</Grid>
 			</div>
+			<Outlet />
 		</div>
 	)
 };
 
-export default Header;
+export default Navigation;
