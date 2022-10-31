@@ -1,7 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
 import { CategoriesResponse } from "./entities/categories-response";
-import { ItemsResponse } from "./entities/items-response";
+import { ItemDetailsResponse, ItemsResponse } from "./entities/items-response";
 import CategoryService from "./services/category-service";
 import ItemService from "./services/item-service";
 
@@ -22,9 +22,10 @@ app.get('/api/items', async function (req: Request, res: Response) {
 	res.send(items);
 });
 
-app.get('/api/items/:itemId', function (req: Request, res: Response) {
+app.get('/api/items/:itemId', async function (req: Request, res: Response) {
 	const itemId = req.params.itemId;
-	res.send(`Get item by id: ${req.params.itemId}`);
+	const itemDetails: ItemDetailsResponse = await new ItemService().getItemById(itemId);
+	res.send(itemDetails);
 });
 
 app.get('/api/categories/:categoryId', async function (req: Request, res: Response) {

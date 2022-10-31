@@ -3,11 +3,30 @@ export interface QueryItemsResponse {
 	country_default_time_zone: string;
 	query: string;
 	paging: Paging;
-	results: Result[];
+	results: Item[];
 	sort: Sort;
 	available_sorts: Sort[];
 	filters: any[];
 	available_filters: AvailableFilter[];
+}
+
+export interface QueryItemDetailsResponse extends Item {
+	pictures: Picture[];
+}
+
+export interface QueryItemDescriptionResponse {
+	text: string;
+	plain_text: string;
+	last_updated: Date;
+	date_created: Date;
+	snapshot: Snapshot;
+}
+
+export interface Snapshot {
+	url: string;
+	width: number;
+	height: number;
+	status: string;
 }
 
 export interface AvailableFilter {
@@ -35,48 +54,29 @@ export interface Paging {
 	limit: number;
 }
 
-export interface Result {
+export interface Item {
 	id: string;
 	site_id: string;
 	title: string;
 	seller: Seller;
 	price: number;
 	prices: Prices;
-	sale_price: null;
-	currency_id: CurrencyID;
+	currency_id: string;
 	available_quantity: number;
 	sold_quantity: number;
-	buying_mode: string;
-	listing_type_id: string;
-	stop_time: Date;
 	condition: string;
 	permalink: string;
 	thumbnail: string;
 	thumbnail_id: string;
-	accepts_mercadopago: boolean;
-	installments: Installments;
 	address: Address;
-	promotions: null;
 	shipping: Shipping;
 	seller_address: SellerAddress;
 	attributes: Attribute[];
-	original_price: null;
 	category_id: string;
-	official_store_id: null;
 	domain_id: string;
 	catalog_product_id: null | string;
-	tags: string[];
 	order_backend: number;
 	use_thumbnail_id: boolean;
-	offer_score: null;
-	offer_share: null;
-	match_score: null;
-	winner_item_id: null;
-	melicoin: null;
-	discounts: null;
-	inventory_id: null;
-	differential_pricing?: DifferentialPricing;
-	catalog_listing?: boolean;
 }
 
 export interface Address {
@@ -88,15 +88,14 @@ export interface Address {
 
 export interface Attribute {
 	name: string;
+	value_id: null | string;
 	value_name: string;
 	attribute_group_id: AttributeGroupID;
 	attribute_group_name: AttributeGroupName;
-	source: number;
+	source?: number;
 	id: string;
-	value_id: null | string;
-	value_struct: null;
 	values: AttributeValue[];
-	value_type: ValueType;
+	value_type?: ValueType;
 }
 
 export enum AttributeGroupID {
@@ -115,23 +114,11 @@ export enum ValueType {
 export interface AttributeValue {
 	id: null | string;
 	name: string;
-	struct: null;
 	source: number;
-}
-
-export enum CurrencyID {
-	Ars = "ARS",
 }
 
 export interface DifferentialPricing {
 	id: number;
-}
-
-export interface Installments {
-	quantity: number;
-	amount: number;
-	rate: number;
-	currency_id: CurrencyID;
 }
 
 export interface Prices {
@@ -144,7 +131,7 @@ export interface Prices {
 }
 
 export interface Presentation {
-	display_currency: CurrencyID;
+	display_currency: string;
 }
 
 export interface Price {
@@ -152,7 +139,7 @@ export interface Price {
 	type: string;
 	amount: number;
 	regular_amount?: number | null;
-	currency_id: CurrencyID;
+	currency_id: string;
 	last_updated: Date;
 	conditions: Conditions;
 	exchange_rate_context: ExchangeRateContext;
@@ -202,11 +189,11 @@ export interface Eshop {
 	eshop_logo_url: string;
 	eshop_status_id: number;
 	eshop_experience: number;
-	eshop_locations: EshopLocation[];
+	eshop_locations: Location[];
 }
 
-export interface EshopLocation {
-	country: City;
+export interface Location {
+	country?: City;
 	city: City;
 	neighborhood: City;
 	state: City;
@@ -214,6 +201,7 @@ export interface EshopLocation {
 
 export interface City {
 	id: null | string;
+	name?: string;
 }
 
 export interface EshopRubro {
@@ -271,9 +259,9 @@ export interface SellerAddress {
 	comment: string;
 	address_line: string;
 	zip_code: string;
-	country: Sort;
-	state: Sort;
-	city: Sort;
+	country: City;
+	state: City;
+	city: City;
 	latitude: string;
 	longitude: string;
 }
@@ -284,4 +272,34 @@ export interface Shipping {
 	tags: string[];
 	logistic_type: string;
 	store_pick_up: boolean;
+	methods?: any[];
+}
+
+export interface SaleTerm {
+	id: string;
+	name: string;
+	value_id: null | string;
+	value_name: string;
+	value_struct: Struct | null;
+	values: Value[];
+}
+
+export interface Struct {
+	number: number;
+	unit: string;
+}
+
+export interface Value {
+	id: null | string;
+	name: string;
+	struct: Struct | null;
+}
+
+export interface Picture {
+	id: string;
+	url: string;
+	secure_url: string;
+	size: string;
+	max_size: string;
+	quality: string;
 }
