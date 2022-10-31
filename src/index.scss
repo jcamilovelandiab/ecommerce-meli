@@ -6,9 +6,19 @@
 
 body {
 	margin: 0;
-	font: 100% $font-stack;
+	font-family: $font-stack;
+	background: $light;
 }
 
-a {
+a, a:hover, a:link, a:visited {
 	text-decoration: none;
+}
+
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
 }
