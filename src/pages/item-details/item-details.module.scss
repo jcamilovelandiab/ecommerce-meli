@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.item_details {
+	&_breadcrumb {
+		font-size: 14px;
+		margin: 12px 0px;
+		color: $gray-light;
+	}
+}

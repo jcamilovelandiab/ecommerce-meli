@@ -18,6 +18,11 @@ $height: 48px;
 }
 
 .logo {
+	&_container {
+		&:hover {
+			cursor: pointer;
+		}
+	}
 	&_image {
 		height: 100%;
 		padding: 6px;

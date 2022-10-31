@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Grid from '../grid/grid';
 import { NumericFormat } from 'react-number-format';
 import shippingImg from '../../assets/images/ic_shipping.png';
@@ -6,10 +8,17 @@ import shippingImg from '../../assets/images/ic_shipping.png';
 import styles from './item-preview.module.scss';
 
 const ItemPreview = ({ item }) => {
+
+	const navigate = useNavigate();
+
+	const onClick = () => {
+		navigate(`${item.id}`);
+	}
+
 	return (
 		<div className={styles.item_preview}>
 			<Grid container>
-				<Grid item cols={8} style={styles.item_preview_details}>
+				<Grid item cols={8} style={styles.item_preview_details} onClick={onClick}>
 					<img src={item.picture} alt={item.title} className={styles.item_preview_image} />
 					<div className={styles.item_preview_description}>
 						<div className={styles.item_preview_description_amount}>
