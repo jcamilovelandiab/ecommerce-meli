@@ -1,23 +1,32 @@
 @import "../../variables.scss";
 
+$margin: map-get($map: $spacing, $key: "md");
+
 .item_preview {
 
 	&_details {
-		margin: map-get($map: $spacing, $key: "md");
+		margin: $margin 0px $margin $margin;
 		display: flex;
 	}
 	&_description {
 		display: flex;
 		flex-direction: column;
+		margin-top: $margin;
+		margin-left: $margin;
+
 		&_amount {
-			font-size: 18px;
+			font-size: 24px;
 			margin-bottom: map-get($map: $spacing, $key: "xl");
 		}
 		&_title {
 			font-size: 18px;
 		}
+		&_shipping {
+			margin-left: 8px;
+		}
 	}
 	&_location {
+		padding: 32px;
 		display: flex;
 		font-size: 12px;
 		color: $gray;

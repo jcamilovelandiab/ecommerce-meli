@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid from '../grid/grid';
+import { NumericFormat } from 'react-number-format';
+import shippingImg from '../../assets/images/ic_shipping.png';
 
 import styles from './item-preview.module.scss';
 
@@ -11,7 +13,22 @@ const ItemPreview = ({ item }) => {
 					<img src={item.picture} alt={item.title} className={styles.item_preview_image} />
 					<div className={styles.item_preview_description}>
 						<div className={styles.item_preview_description_amount}>
-							<p>{item.price.amount}</p>
+							<NumericFormat
+								value={item.price.amount}
+								displayType={'text'}
+								thousandSeparator={'.'}
+								decimalSeparator={','}
+								prefix={'$'}
+							/>
+							{
+								(item.free_shipping) && (
+									<img
+										className={styles.item_preview_description_shipping}
+										src={shippingImg}
+										alt='free-shipping'
+									/>
+								)
+							}
 						</div>
 						<div className={styles.item_preview_description_title}>
 							{item.title}

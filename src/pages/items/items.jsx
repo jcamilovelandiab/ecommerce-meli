@@ -22,7 +22,7 @@ const ItemsPage = () => {
 				<ol className={styles.items_container}>
 					{
 						items.map( item => (
-							<li key={item.id}>
+							<li key={item.id} className={styles.items_border}>
 								<ItemPreview item={item} />
 							</li>
 						))
