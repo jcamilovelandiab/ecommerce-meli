@@ -5,6 +5,12 @@ import ItemService from "./services/item-service";
 
 var app = express();
 
+app.use(function (_: Request, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+	res.setHeader('Access-Control-Allow-Methods', 'GET');
+	next();
+});
+
 app.get('/api/items', async function (req: Request, res: Response) {
 	const q: string = (req.query.q || '') as string;
 	if(q === '') {

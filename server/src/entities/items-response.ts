@@ -18,6 +18,7 @@ export interface Item {
 	free_shipping: boolean;
 	sold_quantity?: number;
 	description?: string;
+	location?: string;
 }
 
 export interface ItemsResponse {

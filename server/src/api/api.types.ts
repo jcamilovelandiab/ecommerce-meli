@@ -1,4 +1,4 @@
-export interface FilteredItemsResponse {
+export interface QueryItemsResponse {
 	site_id: string;
 	country_default_time_zone: string;
 	query: string;
