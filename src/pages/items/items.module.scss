@@ -8,5 +8,10 @@
 	&_border {
 		border-top: 1px solid $light;
 	}
+	&_breadcrumb {
+		font-size: 14px;
+		margin: 12px 0px;
+		color: $gray-light;
+	}
 }
 

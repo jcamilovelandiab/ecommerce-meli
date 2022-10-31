@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './pages/navigation/navigation';
 import ItemsPage from './pages/items/items';
 import ItemDetailsPage from './pages/item-details/item-details';
-import { ItemContextProvider } from './store/ItemContext';
+import { ItemContextProvider } from './store/item.context';
 
 const App = () => {
 	return (
