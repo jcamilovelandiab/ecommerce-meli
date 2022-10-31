@@ -10,7 +10,7 @@ import styles from './items.module.scss';
 
 const ItemsPage = () => {
 	const navigate = useNavigate();
-	const { state: { items, categories }, fetchItems } = useContext(ItemContext);
+	const { state: { items }, fetchItems } = useContext(ItemContext);
 	const [searchParams] = useSearchParams();
 	const searchInput = searchParams.get('search');
 
@@ -22,7 +22,7 @@ const ItemsPage = () => {
 		}
 	}, [searchInput]);
 
-	const breadCrumb = useMemo(() => buildBreadcrumb(categories), [categories]);
+	const breadCrumb = useMemo(() => buildBreadcrumb(items.categories), [items.categories]);
 
 	return (
 		<div>
@@ -32,7 +32,7 @@ const ItemsPage = () => {
 				</div>
 				<ol className={styles.items_container}>
 					{
-						items.map( item => (
+						items.list.map( item => (
 							<li key={item.id} className={styles.items_border}>
 								<ItemPreview item={item} />
 							</li>
