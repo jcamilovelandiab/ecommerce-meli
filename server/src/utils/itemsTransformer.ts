@@ -1,7 +1,7 @@
 import {
 	QueryItemsResponse as ApiQueryItemsResponse,
 	Result as ApiResult
-} from "../api/api.types";
+} from "../api/items.types";
 import { Author, Item, ItemsResponse } from "../entities/items-response";
 
 export default class ItemsTransformer {

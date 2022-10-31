@@ -1,16 +1,15 @@
 import axios from 'axios';
 import { Author, ItemsResponse } from '../entities/items-response';
-import { QueryItemsResponse, Result } from '../api/api.types';
+import { QueryItemsResponse } from '../api/items.types';
 import ItemsTransformer from '../utils/itemsTransformer';
+import Service from './service';
 
-export default class ItemService {
+export default class ItemService extends Service {
 
-	apiBaseUrl: string = 'https://api.mercadolibre.com';
-	defaultLocation: string = 'MLA'; // Argentina
-	author: Author = { name: 'Juan Camilo', lastname: 'Velandia Botello' };
 	transformer: ItemsTransformer;
 
 	constructor() {
+		super();
 		this.transformer = new ItemsTransformer();
 	}
 

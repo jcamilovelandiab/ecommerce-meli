@@ -1,6 +1,8 @@
 import express from "express";
 import { Request, Response } from "express";
+import { CategoriesResponse } from "./entities/categories-response";
 import { ItemsResponse } from "./entities/items-response";
+import CategoryService from "./services/category-service";
 import ItemService from "./services/item-service";
 
 var app = express();
@@ -22,8 +24,13 @@ app.get('/api/items', async function (req: Request, res: Response) {
 
 app.get('/api/items/:itemId', function (req: Request, res: Response) {
 	const itemId = req.params.itemId;
-	console.log(itemId);
 	res.send(`Get item by id: ${req.params.itemId}`);
+});
+
+app.get('/api/categories/:categoryId', async function (req: Request, res: Response) {
+	const categoryId = req.params.categoryId;
+	const category: CategoriesResponse = await new CategoryService().getCategoryById(categoryId);
+	res.send(category);
 });
 
 app.listen(8081, () => {
