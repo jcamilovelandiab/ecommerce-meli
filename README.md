@@ -1,13 +1,26 @@
 # Ecommerce Meli
 
-## Install dependencies
-In order to run this project, we need to install the npm dependencies first.
+In order to run this project, we need to install the server and client dependencies first.
 
-Run the following command: `npm install`
+## Available Scripts for Server
 
-## Available Scripts
+Go to the server folder and run the following commands:
+
+### `npm install`
+
+Install the npm dependencies `npm install`
+
+### `npm run start`
+
+Start the server
+
+## Available Scripts for Client
 
 We can run the following commands:
+
+### `npm install`
+
+Install the npm dependencies `npm install`
 
 ### `npm run start`
 
