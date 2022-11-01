@@ -7,9 +7,6 @@ $margin: map-get($map: $spacing, $key: "md");
 	&_details {
 		margin: $margin 0px $margin $margin;
 		display: flex;
-		&:hover {
-			cursor: pointer;
-		}
 	}
 	&_description {
 		display: flex;

@@ -27,6 +27,8 @@ $spacing-md: map-get($map: $spacing, $key: 'md');
 	}
 	&_image {
 		margin: 0 auto;
+		max-width: 680px;
+		max-height: 680px;
 	}
 	&_right_column {
 		display: flex;

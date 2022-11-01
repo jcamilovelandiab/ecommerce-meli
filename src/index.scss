@@ -10,7 +10,9 @@ body {
 	background: $light;
 }
 
-a, a:hover, a:link, a:visited {
+a,a:hover,a:link,a:visited,a:active {
+	color: $dark;
+	background-color: transparent;
 	text-decoration: none;
 }
 
