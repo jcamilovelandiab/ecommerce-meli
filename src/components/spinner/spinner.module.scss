@@ -1,0 +1,30 @@
+@import "../../variables.scss";
+
+$spinner-size: map-get($map: $spacing, $key: "xl");
+
+.spinner {
+	&_loader {
+		border: 4px solid $blue;
+		border-left-color: transparent;
+		border-radius: 50%;
+		width: $spinner-size;
+		height: $spinner-size;
+		animation: spin 1s linear infinite;
+	}
+	&_overlay {
+		height: 60vh;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
