@@ -1,6 +1,8 @@
 @import "../../variables.scss";
 
 .items {
+	padding-bottom: map-get($map: $spacing, $key: 'lg');
+
 	&_container {
 		border-radius: 2px;
 		background: white;

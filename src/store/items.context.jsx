@@ -5,7 +5,9 @@ const INITIAL_STATE = {
 	items: {
 		categories: [],
 		list: []
-	}
+	},
+	error: null,
+	loading: false
 };
 
 const actions = {
@@ -21,9 +23,9 @@ const reducer = (state, action) => {
 	}
 }
 
-export const ItemContext = React.createContext();
+export const ItemsContext = React.createContext();
 
-export const ItemContextProvider = ({ children }) => {
+export const ItemsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
 	const fetchItems = (query) => {
@@ -44,8 +46,8 @@ export const ItemContextProvider = ({ children }) => {
 	}
 
 	return (
-		<ItemContext.Provider value={{ state, dispatch, fetchItems }}>
+		<ItemsContext.Provider value={{ state, dispatch, fetchItems }}>
 			{children}
-		</ItemContext.Provider>
+		</ItemsContext.Provider>
 	);
 }

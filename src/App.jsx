@@ -1,10 +1,11 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Header from './pages/navigation/navigation';
 import ItemsPage from './pages/items/items';
 import ItemDetailsPage from './pages/item-details/item-details';
-import { ItemContextProvider } from './store/item.context';
+import { ItemsContextProvider } from './store/items.context';
+import { ItemDetailsContextProvider } from './store/item-details.context';
 
 const App = () => {
 	return (
@@ -12,12 +13,24 @@ const App = () => {
 			<Routes>
 				<Route path='/' element={<Header />}>
 					<Route path='items/*' element={
-						<ItemContextProvider>
-							<Routes>
-								<Route index element={<ItemsPage />} />
-								<Route path=':id' element={<ItemDetailsPage />} />
-							</Routes>
-						</ItemContextProvider>
+						<Routes>
+							<Route
+								index
+								element={
+									<ItemsContextProvider>
+										<ItemsPage />
+									</ItemsContextProvider>
+								}
+							/>
+							<Route
+								path=':id'
+								element={
+									<ItemDetailsContextProvider>
+										<ItemDetailsPage />
+									</ItemDetailsContextProvider>
+								}
+							/>
+						</Routes>
 					} />
 				</Route>
 			</Routes>

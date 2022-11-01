@@ -3,14 +3,14 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import ItemPreview from '../../components/item-preview/item-preview';
 import Layout from '../../components/layout/layout';
-import { ItemContext } from '../../store/item.context';
+import { ItemsContext } from '../../store/items.context';
 import { buildBreadcrumb } from '../../util/item.util';
 
 import styles from './items.module.scss';
 
 const ItemsPage = () => {
 	const navigate = useNavigate();
-	const { state: { items }, fetchItems } = useContext(ItemContext);
+	const { state: { items }, fetchItems } = useContext(ItemsContext);
 	const [searchParams] = useSearchParams();
 	const searchInput = searchParams.get('search');
 
@@ -25,7 +25,7 @@ const ItemsPage = () => {
 	const breadCrumb = useMemo(() => buildBreadcrumb(items.categories), [items.categories]);
 
 	return (
-		<div>
+		<div className={styles.items}>
 			<Layout>
 				<div className={styles.items_breadcrumb}>
 					{ breadCrumb }
