@@ -16,7 +16,7 @@ export default class ItemService extends Service {
 		);
 	}
 
-	async getItemsByQuery(query: string, limit: number = 10, site?: string): Promise<ItemsResponse> {
+	async getItemsByQuery(query: string, limit: number = 4, site?: string): Promise<ItemsResponse> {
 		const url: string = `${this.apiBaseUrl}/sites/${site || this.defaultLocation}`
 			+ `/search?q=${query}&limit=${limit}`;
 		const response: QueryItemsResponse = (await axios.get(url)).data;
