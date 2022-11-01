@@ -8,6 +8,10 @@ import Layout from '../../components/layout/layout';
 import { ItemDetailsContext } from '../../store/item-details.context';
 import { buildBreadcrumb, buildItemSubtitle, buildPriceDecimals } from '../../util/item.util';
 import Grid from '../../components/grid/grid';
+import SEO from '../../components/seo/seo';
+
+const TitlePage = `Ecommerce Meli - Buy Product`;
+const TitleDescription = `Buy the product you have always desired!`;
 
 const ItemDetailsPage = () => {
 	const { state: { itemDetails }, fetchItemDetails } = useContext(ItemDetailsContext);
@@ -89,6 +93,10 @@ const ItemDetailsPage = () => {
 								</Grid>
 							</Grid>
 						</div>
+						<SEO
+							title={TitlePage}
+							description={`${TitleDescription} / ${itemDetails.item.title}`}
+						/>
 					</Layout>
 				) : <></>
 			}

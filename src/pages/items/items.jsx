@@ -3,10 +3,14 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import ItemPreview from '../../components/item-preview/item-preview';
 import Layout from '../../components/layout/layout';
+import SEO from '../../components/seo/seo';
 import { ItemsContext } from '../../store/items.context';
 import { buildBreadcrumb } from '../../util/item.util';
 
 import styles from './items.module.scss';
+
+const TitlePage = `Ecommerce Meli - Products`;
+const TitleDescription = `Find the highest quality products!`;
 
 const ItemsPage = () => {
 	const navigate = useNavigate();
@@ -39,6 +43,10 @@ const ItemsPage = () => {
 						))
 					}
 				</ol>
+				<SEO
+					title={TitlePage}
+					description={`${TitleDescription} / ${breadCrumb}`}
+				/>
 			</Layout>
 		</div>
 	)
