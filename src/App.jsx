@@ -1,40 +1,30 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './pages/navigation/navigation';
-import ItemsPage from './pages/items/items';
-import ItemDetailsPage from './pages/item-details/item-details';
-import { ItemsContextProvider } from './store/items.context';
-import { ItemDetailsContextProvider } from './store/item-details.context';
+const Navigation = lazy(() => import('./pages/navigation/navigation'));
+const ItemDetailsRoute = lazy(() => import('./routes/item-details.route'));
+const ItemsRoute = lazy(() => import('./routes/items.route'));
 
 const App = () => {
 	return (
-		<>
+		<Suspense>
 			<Routes>
-				<Route path='/' element={<Header />}>
+				<Route path='/' element={<Navigation />}>
 					<Route path='items/*' element={
 						<Routes>
 							<Route
 								index
-								element={
-									<ItemsContextProvider>
-										<ItemsPage />
-									</ItemsContextProvider>
-								}
+								element={<ItemsRoute />}
 							/>
 							<Route
 								path=':id'
-								element={
-									<ItemDetailsContextProvider>
-										<ItemDetailsPage />
-									</ItemDetailsContextProvider>
-								}
+								element={<ItemDetailsRoute />}
 							/>
 						</Routes>
 					} />
 				</Route>
 			</Routes>
-		</>
+		</Suspense>
 	)
 }
 
