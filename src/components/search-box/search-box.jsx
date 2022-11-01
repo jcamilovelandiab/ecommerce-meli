@@ -12,14 +12,18 @@ const SearchBox = () => {
 		setInput(target.value);
 	}
 
-	const onClick = () => {
-		if(input.trim() !== '') {
+	const handleClick = () => {
+		if (input.trim() !== '') {
 			const params = { search: input };
 			navigate({
 				pathname: '/items',
 				search: `?${createSearchParams(params)}`
 			});
 		}
+	}
+
+	const handleKeyDown = (event) => {
+		if(event.key === 'Enter') handleClick();
 	}
 
 	return (
@@ -31,8 +35,9 @@ const SearchBox = () => {
 				role="search"
 				value={input}
 				onChange={handleChange}
+				onKeyDown={handleKeyDown}
 			/>
-			<button className={styles.search_button} onClick={onClick}>
+			<button className={styles.search_button} onClick={handleClick}>
 				<img src={searchIcon} alt='search' className={styles.search_icon} />
 			</button>
 		</div>
