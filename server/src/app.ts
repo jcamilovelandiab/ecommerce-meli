@@ -28,12 +28,6 @@ app.get('/api/items/:itemId', async function (req: Request, res: Response) {
 	res.send(itemDetails);
 });
 
-app.get('/api/categories/:categoryId', async function (req: Request, res: Response) {
-	const categoryId = req.params.categoryId;
-	const category: CategoriesResponse = await new CategoryService().getCategoryById(categoryId);
-	res.send(category);
-});
-
 app.listen(8081, () => {
 	console.info("Server running on port 8081");
 });
