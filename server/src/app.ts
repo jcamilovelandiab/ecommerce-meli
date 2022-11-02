@@ -1,9 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
-import { CategoriesResponse } from "./entities/categories-response";
+import ItemServiceBuilder from "./builders/item-service.builder";
 import { ItemDetailsResponse, ItemsResponse } from "./entities/items-response";
-import CategoryService from "./services/category-service";
-import ItemService from "./services/item-service";
 
 var app = express();
 
@@ -13,18 +11,21 @@ app.use(function (_: Request, res, next) {
 	next();
 });
 
+var itemServiceBuilder = ItemServiceBuilder.getInstance();
+var itemService = itemServiceBuilder.build();
+
 app.get('/api/items', async function (req: Request, res: Response) {
 	const q: string = (req.query.q || '') as string;
 	if(q === '') {
 		res.status(400).send('The q parameter must be provided!');
 	}
-	const items: ItemsResponse = await new ItemService().getItemsByQuery(q);
+	const items: ItemsResponse = await itemService.getItemsByQuery(q);
 	res.send(items);
 });
 
 app.get('/api/items/:itemId', async function (req: Request, res: Response) {
 	const itemId = req.params.itemId;
-	const itemDetails: ItemDetailsResponse = await new ItemService().getItemById(itemId);
+	const itemDetails: ItemDetailsResponse = await itemService.getItemById(itemId);
 	res.send(itemDetails);
 });
 

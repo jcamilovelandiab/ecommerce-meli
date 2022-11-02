@@ -1,46 +1,57 @@
-import axios from 'axios';
-import { Author, ItemsResponse } from '../entities/items-response';
+import { Author, Item, ItemDetailsResponse, ItemsResponse } from '../entities/items-response';
 import { QueryItemDescriptionResponse, QueryItemDetailsResponse, QueryItemsResponse } from '../api/items.types';
-import ItemsTransformer from '../utils/items-transformer';
-import Service from './service';
-import CategoryService from './category-service';
+import ItemTransformer from '../utils/item-transformer';
+import CategoryProxy from '../proxy/category-proxy';
+import ItemProxy from '../proxy/item-proxy';
+import ItemCategoryBuilder from '../utils/item-category-buider';
+import { QueryCategoryResponse } from '../api/categories.types';
 
-export default class ItemService extends Service {
+export default class ItemService {
 
-	transformer: ItemsTransformer;
+	private itemProxy: ItemProxy;
+	private categoryProxy: CategoryProxy;
+	private transformer: ItemTransformer;
+	private itemCategoryBuilder: ItemCategoryBuilder;
+	private author: Author = { name: 'Juan Camilo', lastname: 'Velandia Botello' }; // this can be a config
 
-	constructor() {
-		super();
-		this.transformer = new ItemsTransformer(
-			new CategoryService()
-		);
+	constructor(
+		itemProxy: ItemProxy,
+		categoryProxy: CategoryProxy,
+		itemTransformer: ItemTransformer,
+		itemCategoryBuilder: ItemCategoryBuilder
+	) {
+		this.itemProxy = itemProxy;
+		this.categoryProxy = categoryProxy;
+		this.transformer = itemTransformer;
+		this.itemCategoryBuilder = itemCategoryBuilder;
 	}
 
-	async getItemsByQuery(query: string, limit: number = 4, site?: string): Promise<ItemsResponse> {
-		const url: string = `${this.apiBaseUrl}/sites/${site || this.defaultLocation}`
-			+ `/search?q=${query}&limit=${limit}`;
-		const response: QueryItemsResponse = (await axios.get(url)).data;
-		return await this.transformer.transformItems(response, this.author);
-	}
-
-	async getItemById(itemId: string) {
-		const url: string = `${this.apiBaseUrl}/items/${itemId}`;
-		const response: QueryItemDetailsResponse = (await axios.get(url)).data;
-		const transformedItemDetails = await this.transformer.transformItemDetails(response, this.author);
-		const itemDescription = await this.getItemDescriptionById(itemId);
+	async getItemsByQuery(query: string): Promise<ItemsResponse> {
+		const items: QueryItemsResponse = await this.itemProxy.getItemsByQuery(query);
+		const transformedItems: Item[] = this.transformer.transformItems(items);
+		const categoryId = this.itemCategoryBuilder.buildCategoryFromItems(transformedItems);
+		const category: QueryCategoryResponse = await this.categoryProxy.getCategoryById(categoryId);
 		return {
-			...transformedItemDetails,
+			categories: category.path_from_root.map(c => c.name),
+			author: this.author,
+			items: transformedItems
+		};
+	}
+
+	async getItemById(itemId: string): Promise<ItemDetailsResponse> {
+		const itemDetails: QueryItemDetailsResponse = await this.itemProxy.getItemById(itemId);
+		const transformedItemDetails: Item = this.transformer.transformItemDetails(itemDetails);
+		const itemDescription: QueryItemDescriptionResponse = await this.itemProxy.getItemDescriptionById(itemId);
+		const category: QueryCategoryResponse = await this.categoryProxy.getCategoryById(itemDetails.category_id);
+		return {
+			categories: category.path_from_root.map(c => c.name),
+			author: this.author,
 			item: {
-				...(transformedItemDetails.item),
-				description: itemDescription
+				...(transformedItemDetails),
+				description: itemDescription.plain_text
 			}
 		}
 	}
 
-	async getItemDescriptionById(itemId: string): Promise<string> {
-		const url: string = `${this.apiBaseUrl}/items/${itemId}/description`;
-		const response: QueryItemDescriptionResponse  = (await axios.get(url)).data;
-		return response.plain_text;
-	}
 
 }
