@@ -40,3 +40,7 @@ Endpoints:
 Builds the app for production to the `dist` folder.
 
 The build is minified and the filenames include the hashes.
+
+## Server architecture
+
+![Server architecture](https://github.com/jcamilovelandiab/ecommerce-meli/blob/main/server/server-architecture.png)
